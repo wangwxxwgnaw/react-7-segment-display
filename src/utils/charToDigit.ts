@@ -1,3 +1,7 @@
+export interface ICharToDigit {
+    [key: string]: number[]
+}
+
 const charToDigit = {
     "0": [1, 1, 1, 1, 1, 1, 0],
     "1": [0, 1, 1, 0, 0, 0, 0],
@@ -17,6 +21,6 @@ const charToDigit = {
     e: [1, 0, 0, 1, 1, 1, 1],
     f: [1, 0, 0, 0, 1, 1, 1],
     "-": [0, 0, 0, 0, 0, 0, 1],
-} as { [key: string]: number[] };
+} as ICharToDigit;
 
 export default charToDigit;

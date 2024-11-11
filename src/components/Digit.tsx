@@ -1,16 +1,17 @@
 import Segment from "./Segment";
 import React, { useEffect, useState } from "react";
 
-import charToDigit from "../utils/charToDigit";
+import charToDigit, { ICharToDigit } from "../utils/charToDigit";
 
 const letters = ["A", "B", "C", "D", "E", "F", "G"] as const;
 
 type DigitType = {
-    char: string;
-    color: string;
-    height: number;
-    skew: boolean;
-    gray: number;
+    char?: string;
+    color?: string;
+    height?: number;
+    skew?: boolean;
+    gray?: number;
+    charMap?: ICharToDigit;
 };
 
 export const Digit = ({
@@ -19,6 +20,7 @@ export const Digit = ({
     height = 250,
     skew = false,
     gray = 0.1,
+    charMap = charToDigit,
 }: DigitType) => {
     const style = {
         height: `${height}px`,
@@ -29,11 +31,11 @@ export const Digit = ({
     } as React.CSSProperties;
 
     const [activeArray, setActiveArray] = useState(
-        char ? charToDigit[char] : charToDigit["-"],
+        char && charMap[char] ? charMap[char] : charMap["-"],
     );
 
     useEffect(() => {
-        setActiveArray(char ? charToDigit[char] : charToDigit["-"]);
+        setActiveArray(char  && charMap[char] ? charMap[char] : charMap["-"]);
     }, [char]);
 
     return (
